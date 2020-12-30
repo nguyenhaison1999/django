@@ -1,4 +1,4 @@
 {
-    "python.pythonPath": "django_ml\\venv\\Scripts\\python.exe",
+    "python.pythonPath": "django_ml_img_class\\Scripts\\python.exe",
     "python.formatting.provider": "autopep8"
 }
