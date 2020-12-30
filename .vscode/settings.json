@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "django_opencv\\opencvEnv\\Scripts\\python.exe"
+    "python.pythonPath": "django_ml\\venv\\Scripts\\python.exe",
+    "python.formatting.provider": "autopep8"
 }
