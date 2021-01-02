@@ -3,5 +3,17 @@
 {% block content %}
     <h1>Hello World</h1>
     <p>This is a template</p>
+
+    <p>{{ test }}</p>
+
+    <ul>
+        {% for i in list %}
+            {% if i == 123 %}
+        <li>{{i|add:1000}}</li>
+            {% else %}
+        <li>{{i}}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
 {% endblock  %}
     
