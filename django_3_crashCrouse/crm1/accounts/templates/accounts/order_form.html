@@ -1,32 +1,18 @@
-<<<<<<< HEAD
-{%  extends 'accounts/main.html' %}
-{% load static %}
-{% block content %}
-
-
-<div class="row">
-	<div class="col-md-6">
-=======
 {% extends 'accounts/main.html' %}
 {% load static %}
 
 {% block content %}
 <div class="row">
     <div class="col-md-6">
->>>>>>> 2daa5e47e8e0b0b8f299378e983628e1c8119679
 		<div class="card card-body">
 
 			<form action="" method="POST">
 				{% csrf_token %}
-<<<<<<< HEAD
-				{{form}}
-=======
 				{{ formset.management_form }}
 				{% for form in formset %}
 					{{form}}
 					<hr>
 				{% endfor %}
->>>>>>> 2daa5e47e8e0b0b8f299378e983628e1c8119679
 				
 				<input type="submit" name="Submit">
 			</form>
@@ -34,9 +20,4 @@
 		</div>
 	</div>
 </div>
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 2daa5e47e8e0b0b8f299378e983628e1c8119679
 {% endblock %}
