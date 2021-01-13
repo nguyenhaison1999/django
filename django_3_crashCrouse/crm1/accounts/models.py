@@ -31,7 +31,7 @@ class Product(models.Model):
     )
 
     name = models.CharField(max_length=200, null=True)
-    price = models.DecimalField(decimal_places=2, max_digits=100000, null=True)
+    price = models.DecimalField(decimal_places=2, max_digits=1000, null=True)
     category = models.CharField(max_length=200, null=True, choices=CATEGORY)
     description = models.CharField(max_length=200, null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
