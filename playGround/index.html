@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Opencv js</title>
+    <script
+      async
+      src="js/opencv.js"
+      onload="onOpenCvReady();"
+      type="text/javascript"
+    ></script>
+  </head>
+  <!-- <style>
+    body {
+      background-color: black;
+    }
+  </style> -->
+  <body>
+    <h2>Hello OpenCV.js</h2>
+    <p id="status">OpenCV.js is loading...</p>
+
+    <img alt="No image" id="input_image" />
+    <input type="file" id="file_input" />
+    <canvas id="output"></canvas>
+  </body>
+  <script>
+    function onOpenCvReady() {
+      document.getElementById("status").innerHTML = "OpenCV.js is ready.";
+    }
+
+    let img_input = document.getElementById("input_image");
+    let file_input = document.getElementById("file_input");
+
+    file_input.addEventListener(
+      "change",
+      (e) => {
+        img_input.src = URL.createObjectURL(e.target.files[0]);
+      },
+      false
+    );
+
+    img_input.onload = function () {
+      let mat = cv.imread(img_input);
+      //cv.cvtColor(mat, mat, cv.COLOR_RGB2GRAY)
+
+      console.log(
+        "image width: " +
+          mat.cols +
+          "\n" +
+          "image height: " +
+          mat.rows +
+          "\n" +
+          "image size: " +
+          mat.size().width +
+          "*" +
+          mat.size().height +
+          "\n" +
+          "image depth: " +
+          mat.depth() +
+          "\n" +
+          "image channels " +
+          mat.channels() +
+          "\n" +
+          "image type: " +
+          mat.type() +
+          "\n",
+        "isContinuous(): " + mat.isContinuous() + "\n"
+      );
+      let row = 3,
+        col = 4;
+      let R = mat.data[row * mat.cols * mat.channels() + col * mat.channels()];
+      let G =
+        mat.data[row * mat.cols * mat.channels() + col * mat.channels() + 1];
+      let B =
+        mat.data[row * mat.cols * mat.channels() + col * mat.channels() + 2];
+      let A =
+        mat.data[row * mat.cols * mat.channels() + col * mat.channels() + 3];
+      console.log("channel R " + R);
+      console.log("channel G " + G);
+      console.log("channel B " + B);
+      console.log("channel A " + A);
+
+      let rgbaPlanes = new cv.MatVector();
+      cv.split(mat, rgbaPlanes);
+      let Rchannel = rgbaPlanes.get(3);
+      console.log(
+        "image width: " +
+          Rchannel.cols +
+          "\n" +
+          "image height: " +
+          Rchannel.rows +
+          "\n" +
+          "image size: " +
+          Rchannel.size().width +
+          "*" +
+          Rchannel.size().height +
+          "\n" +
+          "image depth: " +
+          Rchannel.depth() +
+          "\n" +
+          "image channels " +
+          Rchannel.channels() +
+          "\n" +
+          "image type: " +
+          Rchannel.type() +
+          "\n",
+        "isContinuous(): " + Rchannel.isContinuous() + "\n"
+      );
+
+      cv.imshow("output", Rchannel);
+
+      // Free mem
+      rgbaPlanes.delete();
+      Rchannel.delete();
+      mat.delete();
+    };
+  </script>
+</html>
