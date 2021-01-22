@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<img src="images/exif1.jpg" id="img1" />
+		<pre>Make and model: <span id="makeAndModel"></span></pre>
+		<br />
+		<img src="images/exif2.jpg" id="img2" />
+		<pre id="allMetaDataSpan"></pre>
+		<br />
+		<script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
+		<script>
+			window.onload = getExif;
+
+			function getExif() {
+				var img1 = document.getElementById('img1');
+				EXIF.getData(img1, function () {
+					var make = EXIF.getTag(this, 'Make');
+					var model = EXIF.getTag(this, 'Model');
+					var makeAndModel = document.getElementById('makeAndModel');
+					makeAndModel.innerHTML = `${make} ${model}`;
+				});
+
+				var img2 = document.getElementById('img2');
+				EXIF.getData(img2, function () {
+					var allMetaData = EXIF.getAllTags(this);
+					var allMetaDataSpan = document.getElementById('allMetaDataSpan');
+					allMetaDataSpan.innerHTML = JSON.stringify(allMetaData, null, '\t');
+				});
+			}
+		</script>
+	</body>
+</html>

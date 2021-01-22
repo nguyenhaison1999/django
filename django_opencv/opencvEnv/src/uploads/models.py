@@ -12,6 +12,10 @@ ACTION_CHOICES = (
     ('BLURRED', 'blurred'),
     ('BINARY', 'binary'),
     ('INVERT', 'invert'),
+    ('ELA', 'Error Level Analysis'),
+    ('NOISE_INCONSITENCIES', 'Noise inconsistencies'),
+    ('JPEG_GHOST', 'JPEG-Ghost'),
+    ('DEMO', 'Demosaicing Artifacts'),
 )
 
 
